@@ -65,6 +65,8 @@ obs = np.stack(obs_tup, axis=1)[0:tot_len, :]
 #pd.DataFrame(obs).to_csv(dataPath.joinpath('obs.csv'), sep=',')
 
 #LiangJY: write to a 'output' directory
+#         not to the directory where observations store
+#         personal preference
 parent_dir = os.getcwd()
 output_dir = os.path.join(parent_dir,'output')
 if not os.path.exists(output_dir):

@@ -188,7 +188,7 @@ def get_variables_from_files(dataPath):
         vn, fn = tup
         path = dataPath.joinpath(fn)
         #ds = nc.Dataset(str(path))
-        ds = nc.MFDataset(str(path),'r')   #LiangJY
+        ds = nc.MFDataset(str(path),'r')   #LiangJY read multiple files for one variable
         return ds.variables[vn][:, :, :]
 
     return map(f, names)
@@ -480,6 +480,8 @@ def make_param2res(
                     ]
                 co2 = np.sum(co2_rate*X.reshape(1, 11))
                 co2_rh = co2_rh + co2/days[m % 12]   # monthly average rh
+                #LiangJY note: May caluclate the co2 flux before updating X
+                #              but have not modified yet
                 '''
                 litterfall_rate = [f41*K[0, 0]*ksi[0], f52*K[1, 1]*ksi[1], f63*K[2, 2]*ksi[2], 0, 0, 0, 0, 0, 0]
                 litterfall = np.sum(litterfall_rate * X.reshape(1, 11))
